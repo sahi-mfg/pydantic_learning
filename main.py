@@ -1,4 +1,5 @@
-from pydantic import BaseModel, EmailStr, ValidationError, field_validator
+from typing import Annotated
+from pydantic import BaseModel, EmailStr, Field, ValidationError, field_validator
 
 
 class User(BaseModel):  # définition d'un modèle simple
@@ -13,6 +14,19 @@ class User(BaseModel):  # définition d'un modèle simple
         if v < 18:
             raise ValueError("Must be at least 18 years old")
         return v
+
+
+# Field
+
+AdultAge = Annotated[
+    int, Field(gt=18)
+]  # Utilisation de Field pour spécifier des contraintes (accepte des valeurs supérieures à 18)
+
+
+class NewUser(BaseModel):
+    username: str
+    email: EmailStr
+    age: AdultAge
 
 
 def main():
