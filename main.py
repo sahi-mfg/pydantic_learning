@@ -42,7 +42,7 @@ class Customer(BaseModel):
     items: list[Item]
 
 
-def main():
+def main() -> None:
     print("Hello from pydantic-learning!")
     try:
         user = User(username="johndoe", email="john@example.com", age=25)
