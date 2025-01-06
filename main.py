@@ -29,6 +29,19 @@ class NewUser(BaseModel):
     age: AdultAge
 
 
+class Item(BaseModel):
+    id: int
+    name: str
+    brand: str
+
+
+class Customer(BaseModel):
+    email: EmailStr
+    name: str
+    age: int | None  # Utilisation de l'opérateur de type pour accepter plusieurs types
+    items: list[Item]
+
+
 def main():
     print("Hello from pydantic-learning!")
     try:
