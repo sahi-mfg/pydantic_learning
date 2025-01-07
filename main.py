@@ -39,13 +39,13 @@ class Customer(BaseModel):
     email: EmailStr
     name: str
     age: int | None  # Utilisation de l'opérateur de type pour accepter plusieurs types
-    items: list[Item]
+    items: list[Item] | None = []
 
 
 def main() -> None:
     print("Hello from pydantic-learning!")
     try:
-        user = User(username="johndoe", email="john@example.com", age=25)
+        user = Customer(name="john doe", email="john@example.com", age=25)
         print(user)
     except ValidationError as e:
         print(e.json())
